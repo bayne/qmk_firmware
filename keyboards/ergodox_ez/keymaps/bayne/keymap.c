@@ -11,12 +11,24 @@
 #define KC_RSHIFT KC_RSFT
 #define KC_BSLASH KC_BSLS
 #define KC_SCROLLLOCK KC_SCRL
+#define RKVM_PERSONAL SS_TAP(X_HELP)
+#define RKVM_WORK SS_TAP(X_PAUS)
+#define QTILE_W1 SS_LCTL(SS_LALT("9"))
+#define QTILE_W2 SS_LCTL(SS_LALT("0"))
+#define QTILE_1 SS_LGUI("1")
+#define SYNERGY_PERSONAL SS_LALT(SS_LCTL("7")) SS_DELAY(50)
+#define SYNERGY_MBP SS_LALT(SS_LCTL("8")) SS_DELAY(50)
+
+#define PERSONAL_SW SYNERGY_PERSONAL RKVM_PERSONAL
+#define WORK_SW RKVM_PERSONAL SYNERGY_PERSONAL RKVM_WORK
+#define MBP_SW RKVM_PERSONAL SYNERGY_MBP
 
 enum custom_keycodes {
   VRSN = SAFE_RANGE,
   EGGS,
   WORK_1,
   WORK_2,
+  WORK_MBP,
   PERSONAL,
 };
 
@@ -28,9 +40,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESCAPE,      KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCOLON,      KC_QUOTE,
     KC_TRANSPARENT, MT(MOD_LSFT, KC_Z),KC_X,           KC_C,           KC_V,           KC_B,           TG(2),                                          LGUI(KC_ENTER), KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_RSHIFT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LALT,        MO(1),                                                                                                          KC_MINUS,       KC_EQUAL,       KC_LBRACKET,    KC_RBRACKET,    TG(1),
-                                                                                                    PERSONAL,LALT(LCTL(KC_8)),KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                                                    WORK_1,KC_RALT,
-                                                                                    KC_SPACE,       KC_LCTRL,       WORK_2,LGUI(KC_LCTRL), KC_LGUI,        KC_ENTER
+                                                                                                    PERSONAL,       WORK_MBP, KC_TRANSPARENT, KC_TRANSPARENT,
+                                                                                                                    WORK_1,   KC_RALT,
+                                                                                    KC_SPACE,       KC_LCTRL,       WORK_2,   LGUI(KC_LCTRL), KC_LGUI,        KC_ENTER
   ),
   [1] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -66,13 +78,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(S_EGGS);
                 return false;
             case WORK_1:
-                SEND_STRING(SS_TAP(X_HELP)SS_LCTL(SS_LALT("9"))SS_TAP(X_PAUS));
+                SEND_STRING(PERSONAL_SW QTILE_W1 RKVM_WORK);
                 return false;
             case WORK_2:
-                SEND_STRING(SS_TAP(X_HELP)SS_LCTL(SS_LALT("0"))SS_TAP(X_PAUS));
+                SEND_STRING(PERSONAL_SW QTILE_W2 RKVM_WORK);
+                return false;
+            case WORK_MBP:
+                SEND_STRING(PERSONAL_SW QTILE_W1 SYNERGY_MBP);
                 return false;
             case PERSONAL:
-                SEND_STRING(SS_TAP(X_HELP)SS_LALT(SS_LCTL("7"))SS_LGUI("1"));
+                SEND_STRING(PERSONAL_SW QTILE_1);
                 return false;
         }
     }
