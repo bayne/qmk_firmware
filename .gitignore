@@ -121,3 +121,5 @@ via*.json
 /keyboards/**/keymaps/via/*
 /keyboards/**/keymaps/vial/*
 .direnv
+
+eggs.h
