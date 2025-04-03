@@ -19,9 +19,10 @@
 #define SYNERGY_PERSONAL SS_LALT(SS_LCTL("7")) SS_DELAY(50)
 #define SYNERGY_MBP SS_LALT(SS_LCTL("8")) SS_DELAY(50)
 
-#define PERSONAL_SW SYNERGY_PERSONAL RKVM_PERSONAL
-#define WORK_SW RKVM_PERSONAL SYNERGY_PERSONAL RKVM_WORK
-#define MBP_SW RKVM_PERSONAL SYNERGY_MBP
+#define PERSONAL_SW SYNERGY_PERSONAL RKVM_PERSONAL QTILE_1
+#define WORK_1_SW SYNERGY_PERSONAL RKVM_PERSONAL QTILE_W1 RKVM_WORK
+#define WORK_2_SW SYNERGY_PERSONAL RKVM_PERSONAL QTILE_W2 RKVM_WORK
+#define MBP_SW SYNERGY_PERSONAL RKVM_PERSONAL SYNERGY_MBP
 
 enum custom_keycodes {
   VRSN = SAFE_RANGE,
@@ -78,16 +79,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(S_EGGS);
                 return false;
             case WORK_1:
-                SEND_STRING(PERSONAL_SW QTILE_W1 RKVM_WORK);
+                SEND_STRING(WORK_1_SW);
                 return false;
             case WORK_2:
-                SEND_STRING(PERSONAL_SW QTILE_W2 RKVM_WORK);
+                SEND_STRING(WORK_2_SW);
                 return false;
             case WORK_MBP:
-                SEND_STRING(PERSONAL_SW QTILE_W1 SYNERGY_MBP);
+                SEND_STRING(MBP_SW);
                 return false;
             case PERSONAL:
-                SEND_STRING(PERSONAL_SW QTILE_1);
+                SEND_STRING(PERSONAL_SW);
                 return false;
         }
     }
