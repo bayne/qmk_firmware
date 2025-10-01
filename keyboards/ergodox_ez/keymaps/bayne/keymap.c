@@ -24,7 +24,7 @@
 #define PERSONAL_SW SYNERGY_PERSONAL RKVM_PERSONAL QTILE_PREV
 #define WORK_1_SW SYNERGY_PERSONAL RKVM_PERSONAL QTILE_W1 RKVM_WORK SS_TAP(X_KB_VOLUME_UP)
 #define WORK_2_SW SYNERGY_PERSONAL RKVM_PERSONAL QTILE_W2 RKVM_WORK SS_TAP(X_KB_VOLUME_DOWN)
-#define MBP_SW SYNERGY_PERSONAL RKVM_PERSONAL QTILE_W2 FOCUS_MBP_DISPLAY SYNERGY_MBP
+#define MBP_SW SYNERGY_PERSONAL RKVM_PERSONAL FOCUS_MBP_DISPLAY SYNERGY_MBP
 #define SYNERGY_7_SW SYNERGY_PERSONAL RKVM_PERSONAL
 #define SYNERGY_8_SW SYNERGY_PERSONAL RKVM_PERSONAL SYNERGY_MBP
 
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LALT,        MO(1),                                                                                                          KC_MINUS,       KC_EQUAL,       KC_LBRACKET,    KC_RBRACKET,    TG(1),
                                                                                                     SYNERGY_7,      PERSONAL,     PERSONAL, SYNERGY_8,
                                                                                                                     WORK_1,       WORK_1,
-                                                                                    KC_SPACE,       KC_LCTRL,       WORK_MBP,     WORK_2,   KC_LGUI,        KC_ENTER
+                                                                                    KC_SPACE,       KC_LCTRL,       WORK_2,       WORK_MBP,   KC_LGUI,        KC_ENTER
   ),
   [1] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
